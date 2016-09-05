@@ -1,0 +1,31 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body { padding-top: 70px; }
+@media screen and (max-width: 768px) {
+  body { padding-top: 90px; }
+}
+
+#chatroom-card {
+    overflow-y: scroll;
+    height: 50vh;
+}
+
+#messages {
+  p {
+  margin: 0;
+  font-size: 12px;
+  }
+}
+
+#new_message {
+  textarea {
+    width: 81%;
+    margin-right: 10px;
+  }
+}
+
+#new-chatroom {
+  padding: 20px;
+}

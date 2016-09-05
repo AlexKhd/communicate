@@ -1,0 +1,9 @@
+#new-chatroom.card
+  p Create your own room!
+  .chatroom-form.form-inline
+    = simple_form_for chatroom, remote: true do |f|
+      .input-group
+        span.input-group-addon topic:
+        = f.text_field :name, class: 'form-control', placeholder: 'type name of new room... (min 6 chars)'
+        span.input-group-btn
+          = f.button :submit, 'Create', id: 'create-chatroom', class: 'btn btn-primary'

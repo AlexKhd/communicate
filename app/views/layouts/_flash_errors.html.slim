@@ -1,0 +1,6 @@
+- if flash.notice
+  .alert.alert-danger
+    - flash.notice.each do |type, messages|
+      span.glyphicon.glyphicon-exclamation-sign aria-hidden='true'
+        - messages.each do |msg|
+          #{type} #{msg}

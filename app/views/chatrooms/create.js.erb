@@ -1,0 +1,3 @@
+$("input#chatroom_name").val(" ")
+$("#chatroom-errors").html(" ")
+$("#chatroom-index").prepend('<li><%= link_to @chatroom.name, chatroom_path(@chatroom) %></li>')

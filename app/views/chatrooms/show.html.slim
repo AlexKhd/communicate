@@ -1,0 +1,11 @@
+.row
+  .col-md-10.offset-md-1
+    h4 Room name: #{@chatroom.name}
+
+    #chatroom-card.card
+      - if @chatroom.messages.any?
+        .card-block#messages
+          = render partial: 'messages/message', collection: @chatroom.messages.last(5)
+      - else
+        .card-block#messages
+    = render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}

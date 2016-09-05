@@ -1,0 +1,22 @@
+.row
+  #chatroom-title.col-md-5
+    h1 Chatrooms
+    .btn-group
+      button.btn.btn-success type='button' Choose room to chat
+      button.btn.btn-success.dropdown-toggle.dropdown-toggle-split type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+        span.sr-only Toggle Dropdown
+      .dropdown-menu
+        - @chatrooms.each do |f|
+          = link_to f.name, chatroom_path(f), class: 'dropdown-item'
+        .dropdown-divider
+        a.dropdown-item href='#' Create your own room
+    p
+    p Full list
+    ul#chatroom-index
+      - if @chatrooms.any?
+        = render @chatrooms
+      - else
+        p Be the first one to make a chatroom!
+
+  .col-md-7
+    = render partial: 'chatroom_form', locals: {chatroom: @chatroom}
