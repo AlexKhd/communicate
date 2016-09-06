@@ -1,12 +1,19 @@
 doctype html
 html
   head
-    title Chat
+    title = Rails.application.secrets.app_title
     = csrf_meta_tags
+    meta name='description' content=Rails.application.secrets.app_description
     meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1'
+    meta property="og:title" content=Rails.application.secrets.app_title
+    meta property='og:type' content='website'
+    meta property='og:url' content=root_url
+    meta property="og:image" content=""
+    meta property="og:description" content=Rails.application.secrets.app_description
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = action_cable_meta_tag
+    = render 'layouts/ga' if Rails.env.production?
   body
     #wrapper
       = render 'layouts/header'

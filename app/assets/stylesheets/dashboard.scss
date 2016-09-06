@@ -7,6 +7,33 @@ body { padding-top: 70px; }
   body { padding-top: 90px; }
 }
 
+// navbar
+
+.navbar-toggler {
+    border-color: #ddd;
+    padding: .7rem .7rem;
+}
+
+.navbar-toggler:focus, .navbar-toggler:hover {
+    background-color: #ddd;
+}
+
+.navbar-toggler .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+}
+
+.navbar-toggler .icon-bar {
+    background-color: #888;
+}
+
+.navbar-toggler .icon-bar+.icon-bar {
+    margin-top: 4px;
+}
+
+// end of navbar
+
 #chatroom-card {
     overflow-y: scroll;
     height: 50vh;
