@@ -48,11 +48,19 @@ body { padding-top: 70px; }
 
 #new_message {
   textarea {
-    width: 81%;
-    margin-right: 10px;
+    width: 95%;
+    margin-left: -15px;
+    height: 5rem;
   }
 }
 
 #new-chatroom {
   padding: 20px;
+}
+
+#send_message_chatroom {
+  @media screen and (min-width: 400px) {
+    margin-left: -60px;
+    height: 5rem;
+  }
 }

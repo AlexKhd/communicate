@@ -1,6 +1,11 @@
 .form-inline
   = form_for message, remote: true, authenticity_token: true do |f|
-    = f.text_area :content, class: 'form-control inputField', data: {textarea: 'message'}, placeholder: 'your message..'
+    .container
+      .row
+        .col-sm-11.col-xs-10
+          = f.text_area :content, class: 'form-control inputField', data: {textarea: 'message'}, placeholder: 'your message..', autofocus: "autofocus"
 
-    = f.hidden_field :chatroom_id, value: chatroom.id
-    = f.submit 'send', class: 'btn btn-primary btn-lg pull-right', data: {send: 'message'}
+          = f.hidden_field :chatroom_id, value: chatroom.id
+          = f.submit 'send', class: 'btn btn-primary btn-lg pull-right', data: {send: 'message'}, style: "display: none"
+        .col-sm-1.col-xs-1
+          button class='btn btn-primary btn-lg pull-right' id='send_message_chatroom' send
