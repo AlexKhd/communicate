@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-  skip_before_action :authenticate_user!
 
   def create
     current_user ||= User.find_by_name(:anonymous)
