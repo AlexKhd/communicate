@@ -1,5 +1,4 @@
 class ChatroomsController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :create_anonymous
 
   def index

@@ -20,4 +20,8 @@ module ApplicationHelper
       notice: 'alert-info'
     }[flash_type.to_sym] || flash_type.to_s
   end
+
+  def active_class(link_path)
+    current_page?(link_path) ? 'nav-item nav-link active' : 'nav-item nav-link'
+  end
 end

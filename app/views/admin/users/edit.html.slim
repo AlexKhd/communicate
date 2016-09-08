@@ -1,0 +1,20 @@
+.row
+  .col-sm-4.col-sm-offset-4
+    h2 Editing user
+    = simple_form_for [:admin, @user], html: { class: "form form-horizontal user" } do |f|
+      - if @user.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          ul
+            - @user.errors.full_messages.each do |message|
+              li = message
+
+      .field
+        = f.input :name, required: true, autofocus: true, label: 'Name'
+        = f.input :email, required: true, label: 'email'
+        = f.input :role, required: true, label: 'Role'
+      .actions = f.submit nil, class: 'btn btn-primary'
+
+= link_to 'Show', profile_path(@user)
+'|
+= link_to 'Back', :back
