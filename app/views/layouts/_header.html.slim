@@ -10,7 +10,6 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
       = link_to 'Home', root_path, class: 'nav-item nav-link'
       /= link_to 'Common chat', root_path, class: 'nav-item nav-link'
       = link_to 'Chatrooms', chatrooms_path, class: 'nav-item nav-link'
-      /= link_to 'Users', admin_users_path, class: active_class(admin_users_path)
       - if current_user && current_user.admin?
         = link_to 'Users', admin_users_path, class: active_class(admin_users_path)
         = link_to 'Profile', profile_path, class: active_class(profile_path)
@@ -18,8 +17,3 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
         = link_to 'Logout', destroy_user_session_path, class: 'nav-item nav-link', method: :delete
       - else
         = link_to 'Login', new_user_session_path, class: active_class(new_user_session_path)
-      - if current_user
-        /= link_to 'Log Out', logout_path, method: 'delete', class: 'nav-item nav-link'
-      - else
-        /= link_to 'Log In', login_path, class: 'nav-item nav-link'
-        /= link_to 'Sign Up', signup_path, class: 'nav-item nav-link'

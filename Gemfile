@@ -28,7 +28,18 @@ gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'faker', '~> 1.6'
   gem 'letter_opener'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner', '~> 1.5'
+  gem 'factory_girl_rails'
+  gem 'rspec-collection_matchers'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -36,6 +47,8 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'guard-bundler', require: false
+  gem 'guard-rspec', require: false
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', '~> 2.0', require: false

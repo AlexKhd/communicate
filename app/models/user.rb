@@ -3,7 +3,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  before_validation :normalize_email
+  after_create :send_admin_notification
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,9 +11,13 @@ class User < ApplicationRecord
   has_many :messages
   has_many :chatrooms, through: :messages
   validates :name, presence: true, uniqueness: true
-  # validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
-  def normalize_email
-    self.email = self.name + '@dot.com' if email.blank?
+  def set_admin
+    update_attribute(:role, :admin)
+  end
+
+  def send_admin_notification
+    # UserMailer.welcome_email(self).deliver_later
   end
 end

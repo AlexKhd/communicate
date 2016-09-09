@@ -3,7 +3,7 @@ module Admin
     protect_from_forgery with: :exception
     layout 'admin'
 
-    # before_action :redirect_users
+    before_action :redirect_users
 
     private
 
