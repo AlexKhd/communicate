@@ -25,6 +25,7 @@ gem 'simple_form'
 gem 'rack-attack'
 gem 'devise', github: 'plataformatec/devise', branch: 'master'
 gem 'friendly_id', '~> 5.1.0'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'byebug', platform: :mri

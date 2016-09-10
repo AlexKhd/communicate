@@ -11,4 +11,8 @@ FactoryGirl.define do
     name 'Administrator'
     role 'admin'
   end
+
+  trait :is_anonymous do
+    name 'anonymous'
+  end
 end

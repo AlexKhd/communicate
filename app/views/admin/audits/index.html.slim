@@ -1,0 +1,23 @@
+h3 Listing
+table.table.table-striped.table-hover
+  thead.thead-inverse
+    tr
+      th Date
+      th Country
+      th City
+      th URL
+      th IP
+      th Agent
+      th
+
+  tbody
+    - @audits.each do |a|
+      tr
+        td = a.updated_at
+        td = a.country
+        td = a.city
+        td = a.url
+        td = a.ip
+        td = a.user_agent
+        td = link_to 'Delete', admin_audit_path(a), method: :delete
+    = will_paginate @audits, renderer: BootstrapPagination::Rails

@@ -4,10 +4,17 @@ abort("The Rails running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/poltergeist'
+require 'puma'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.register_server('puma') do |app, port|
+  server = Puma::Server.new(app)
+  server.add_tcp_listener(Capybara.server_host, port)
+  server.run
+end
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(
     app, debug: false, js_errors: false, timeout: 120, inspector: true
