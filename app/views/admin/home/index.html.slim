@@ -1,0 +1,10 @@
+.row
+  .col-md-3
+    h3 Overall
+    h6 = "Users: #{@users_count}"
+    h6 = "Rooms: #{@chatrooms_count}"
+    h6 = "Messages: #{@messages_count}"
+  .col-md-9
+    - @chatrooms.each do |chatroom|
+      br
+      = link_to chatroom.name, admin_chatroom_path(chatroom), data: {confirm: 'Are you sure?'}, method: :delete

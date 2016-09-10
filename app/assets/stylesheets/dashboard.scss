@@ -64,3 +64,9 @@ body { padding-top: 70px; }
     height: 5rem;
   }
 }
+
+#chatroom-index {
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
+  border-radius: 5px;
+}

@@ -7,7 +7,7 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find_by(slug: params[:slug])
+    @chatroom = Chatroom.friendly.find(params[:id])
     @message = Message.new
   end
 
@@ -27,7 +27,7 @@ class ChatroomsController < ApplicationController
       end
     else
       respond_to do |format|
-        flash[:notice] = {error: ['a chatroom with this topic already exists']}
+        flash[:notice] = {error: ['error while creating the chatroom!']}
         format.html { redirect_to new_chatroom_path }
         format.js { render template: 'chatrooms/chatroom_error.js.erb'}
       end
@@ -35,12 +35,13 @@ class ChatroomsController < ApplicationController
   end
 
   private
-
     def chatroom_params
       params.require(:chatroom).permit(:name)
     end
 
     def create_anonymous
-      User.create!(name: :anonymous) unless User.find_by_name(:anonymous)
+      email = Rails.application.secrets.an_email
+      pwd = Rails.application.secrets.an_pwd
+      User.create!(name: :anonymous, email: email, password: pwd) unless User.find_by_name(:anonymous)
     end
 end

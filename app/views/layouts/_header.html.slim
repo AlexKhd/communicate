@@ -11,6 +11,7 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
       /= link_to 'Common chat', root_path, class: 'nav-item nav-link'
       = link_to 'Chatrooms', chatrooms_path, class: 'nav-item nav-link'
       - if current_user && current_user.admin?
+        = link_to 'Statistics', admin_root_path, class: 'nav-item nav-link'
         = link_to 'Users', admin_users_path, class: active_class(admin_users_path)
         = link_to 'Profile', profile_path, class: active_class(profile_path)
       - if current_user

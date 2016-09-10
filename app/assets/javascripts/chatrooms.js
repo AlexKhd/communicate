@@ -1,6 +1,8 @@
 var scroller = 0
 
 $(document).on('turbolinks:load', function() {
+  createChatroomOnKeyDown();
+  createChatroomOnClick();
   submitNewMessage();
   if(/^\/chatrooms\/.*$/.test(window.location.pathname)) {
     scrDown();
@@ -64,4 +66,37 @@ function scrDown(){
       $('#chatroom-card').scrollTop($('#chatroom-card')[0].scrollHeight);
       }, 1500);
     });
+}
+
+function createChatroomOnKeyDown(){
+  $('#chatroom_name').keydown(function(event) {
+    if (event.keyCode == 13) {
+      $('#create-chatroom').click();
+      event.preventDefault();
+      //return false;
+    }
+  });
+}
+
+function createChatroomOnClick() {
+  $('#create-chatroom').on('click', function(event){
+    if ($('#chatroom_name').val().length < 6) {
+      $('input#chatroom_name').focus();
+      $('#chatroom_name').css('background-color', 'red');
+      setTimeout(function(){
+        $('#chatroom_name').css('background-color', 'white');
+      }, 1000);
+      $('#new-chatroom p').html('Name of the room 6 symbols min!');
+      $('#new-chatroom p').css('background-color', 'red');
+      setTimeout(function(){
+        $('#new-chatroom p').css('background-color', 'white');
+      }, 2200);
+      event.preventDefault();
+    } else {
+      $('#chatroom-index').css('background-color', 'green');
+      setTimeout(function(){
+        $('#chatroom-index').css('background-color', 'white');
+      }, 2200);
+    }
+  });
 }
