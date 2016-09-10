@@ -26,6 +26,8 @@ gem 'rack-attack'
 gem 'devise', github: 'plataformatec/devise', branch: 'master'
 gem 'friendly_id', '~> 5.1.0'
 gem 'will_paginate-bootstrap'
+gem 'sitemap_generator', '~> 5.1.0'
+gem 'whenever', '~> 0.9.7', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri

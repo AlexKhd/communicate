@@ -13,20 +13,12 @@ rerun.txt
 pickle-email-*.html
 .send
 /spec/support/screenshots/*
-
+public/robots.txt
+public/sitemap.xml.gz
 config/secrets.yml
-
-# dotenv
-# TODO Comment out this rule if environment variables can be committed
-.env
-
-## Environment normalization:
 /.bundle
 /vendor/bundle
-
-# Ignore Byebug command history file.
 .byebug_history
-
 config/database.yml
 config/secrets.yml
 config/deploy.rb
