@@ -8,14 +8,17 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
   #navbar.collapse.navbar-toggleable-sm
     nav.nav.navbar-nav
       = link_to 'Home', root_path, class: 'nav-item nav-link'
-      /= link_to 'Common chat', root_path, class: 'nav-item nav-link'
       = link_to 'Chatrooms', chatrooms_path, class: 'nav-item nav-link'
-      - if current_user && current_user.admin?
-        = link_to 'Statistics', admin_root_path, class: 'nav-item nav-link'
-        = link_to 'Log', admin_audits_path, class: 'nav-item nav-link'
-        = link_to 'Users', admin_users_path, class: active_class(admin_users_path)
-        = link_to 'Profile', profile_path, class: active_class(profile_path)
       - if current_user
         = link_to 'Logout', destroy_user_session_path, class: 'nav-item nav-link', method: :delete
       - else
         = link_to 'Login', new_user_session_path, class: active_class(new_user_session_path)
+      - if current_user && current_user.admin?
+        .btn-group
+          = link_to 'Admin', '', class: "dropdown-toggle nav-link nav-item", type: "button",
+            'aria-expanded': "false", id: "dropdownMenu1", 'data-toggle': "dropdown", 'aria-haspopup': "true"
+          .dropdown-menu aria-labelledby="dropdownMenu1"
+            = link_to 'Statistics', admin_root_path, class: 'dropdown-item'
+            = link_to 'Log', admin_audits_path, class: 'dropdown-item'
+            = link_to 'Users', admin_users_path, class: 'dropdown-item'
+            = link_to 'Profile', profile_path, class: 'dropdown-item'

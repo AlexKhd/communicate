@@ -1,0 +1,17 @@
+.col-sm-6.offset-sm-3
+  h2 Log in
+  - if devise_mapping.omniauthable?
+    - resource_class.omniauth_providers.each do |provider|
+      br
+      = render 'devise/shared/facebook_button'
+      br
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-inputs
+      = f.input :email, required: false, autofocus: true
+      = f.input :password, required: false, hint: ("at least #{@minimum_password_length} characters minimum" if @validatable), label: 'Password'
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+    .form-actions
+      = f.button :submit, 'Log in', class: 'btn-success'
+
+  = render "devise/shared/links"
