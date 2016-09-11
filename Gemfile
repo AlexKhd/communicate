@@ -28,6 +28,9 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'will_paginate-bootstrap'
 gem 'sitemap_generator', '~> 5.1.0'
 gem 'whenever', '~> 0.9.7', require: false
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'font-awesome-sass', '~> 4.6.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -84,3 +84,38 @@ body { padding-top: 70px; }
   list-style: none;
   padding-right: 6px;
 }
+
+// facebook
+
+#btn_via_facebook {
+  background-color: #3a579a;
+	display: block;
+	line-height: 28px;
+  color: #fff !important;
+  text-transform: uppercase;
+  font: 12px, 'proxima-nova', 'helvetica neue', helvetica, arial, sans-serif;
+  border-radius: 3px;
+  text-decoration: none;
+  span {
+    line-height: 28px;
+    display: table-cell;
+    text-align: center;
+  }
+}
+
+#btn_via_facebook:hover {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.08) 100%);
+}
+
+.fb-icon {
+  background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+  font-size: 16px;
+  min-width: 32px;
+}
+
+.fb-icon-text {
+  width: 100%;
+}
+
+// endof facebook
