@@ -9,11 +9,18 @@ class ApplicationController < ActionController::Base
 
   def get_ip
     ip = request.remote_ip ? request.remote_ip : 'unknown'
+    data = ip << ' - ' << request.env["HTTP_USER_AGENT"]
+    AdminMailer.notify_message('got request from ', data).deliver if new_request(ip)
     unless [Rails.application.secrets.whitelist_ip,'127.0.0.1'].include?(ip)
       uAgent = request.env["HTTP_USER_AGENT"] ? request.env["HTTP_USER_AGENT"] : 'unknown'
       url = request.original_url
       @audit = Audit.new(ip: ip, country: 'local', user_agent: uAgent, url: url)
       @audit.save
     end
+  end
+
+  def new_request(ip)
+    result = Audit.where(ip: ip).where("created_at >= ?", Time.zone.now.beginning_of_day)
+    return !result
   end
 end
