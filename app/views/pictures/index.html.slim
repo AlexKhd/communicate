@@ -1,0 +1,14 @@
+-if logged_in?
+  .row
+    aside.col-md-4
+      section.user_info
+        = render 'shared/user_info'
+      section.picture_form
+        = render 'shared/picture_form'
+    .col-md-8
+      h3 Picture Feed
+      = render 'shared/feed'
+-else
+  .center.jumbotron
+    h1 Welcome to Gallery!
+    = link_to 'Log in now!', new_user_session_path, class: 'btn btn-lg btn-primary'

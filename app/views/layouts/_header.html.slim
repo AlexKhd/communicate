@@ -9,6 +9,7 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
     nav.nav.navbar-nav
       = link_to 'Home', root_path, class: 'nav-item nav-link'
       = link_to 'Chatrooms', chatrooms_path, class: 'nav-item nav-link'
+      = link_to 'Gallery', pictures_path, class: 'nav-item nav-link'
       - if current_user
         = link_to 'Logout', destroy_user_session_path, class: 'nav-item nav-link', method: :delete
       - else

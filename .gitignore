@@ -25,3 +25,6 @@ config/deploy.rb
 config/deploy/*
 /shared/
 /lib/capistrano/*
+google_drive/config.json
+config/google_drive.json
+public/uploads/tmp/**

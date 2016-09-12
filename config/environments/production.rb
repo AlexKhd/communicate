@@ -89,4 +89,6 @@ Rails.application.configure do
       password:            Rails.application.secrets.gmail_mailer_password,
       enable_starttls_auto: true
       }
+
+  config.storage_folder = 'communicate_storage'
 end

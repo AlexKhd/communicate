@@ -31,6 +31,8 @@ gem 'whenever', '~> 0.9.7', require: false
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'font-awesome-sass', '~> 4.6.2'
+gem 'google_drive'
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -15,6 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :messages
   has_many :chatrooms, through: :messages
+  has_many :pictures, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
@@ -82,5 +83,9 @@ class User < ApplicationRecord
 
   def send_admin_notification
     # UserMailer.welcome_email(self).deliver_later
+  end
+
+  def feed
+    Picture.where("user_id = ?", id)
   end
 end

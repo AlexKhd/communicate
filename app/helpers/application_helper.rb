@@ -24,4 +24,8 @@ module ApplicationHelper
   def active_class(link_path)
     current_page?(link_path) ? 'nav-item nav-link active' : 'nav-item nav-link'
   end
+
+  def current_user?(user)
+    user == current_user
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911193218) do
+ActiveRecord::Schema.define(version: 20160912024058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 20160911193218) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string   "file_name"
+    t.string   "content_type"
+    t.string   "url_key"
+    t.string   "temp_file"
+    t.integer  "user_id"
+    t.string   "gd_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id", "created_at"], name: "index_pictures_on_user_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
@@ -84,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160911193218) do
     t.string   "unconfirmed_email"
     t.string   "role"
     t.string   "slug"
+    t.string   "gd_fid"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
@@ -91,4 +105,5 @@ ActiveRecord::Schema.define(version: 20160911193218) do
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "pictures", "users"
 end
