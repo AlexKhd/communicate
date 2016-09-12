@@ -51,7 +51,6 @@ module Api::PicturesHelper
           parents:[@root_id],
           mime_type: 'application/vnd.google-apps.folder'
         }
-        byebug
         file = @drive.create_file(metadata, fields: 'id')
         user.gd_fid = file.id
         user.save
