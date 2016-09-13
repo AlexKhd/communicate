@@ -1,7 +1,6 @@
 li id="picture-#{picture.id}"
   span.file_name
     = picture.file_name
-    /= picture.content_type
     = image_tag (api_picture_path id: picture.url_key) if picture.file_name?
   span.timestamp
     Posted #{time_ago_in_words(picture.created_at)} ago.

@@ -28,3 +28,4 @@ config/deploy/*
 google_drive/config.json
 config/google_drive.json
 public/uploads/tmp/**
+public/uploads/picture/**

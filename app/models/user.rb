@@ -55,7 +55,7 @@ class User < ApplicationRecord
           # avatar_updated_at: Time.now,
           # facebook_name: auth.extra.raw_info.name
         )
-        user.skip_confirmation!
+        # user.skip_confirmation!
         user.save!
         user
       end

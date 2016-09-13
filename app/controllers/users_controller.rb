@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   end
 
   def finish_signup
-    current_user.skip_confirmation!
+    # current_user.skip_confirmation!
     if request.patch? && params[:user] # && params[:user][:email]
       if current_user.update(user_params)
-        current_user.skip_confirmation!
+        # current_user.skip_confirmation!
         sign_in(current_user, bypass: true)
         redirect_to root_path, notice: t(:profile_updated)
       else
