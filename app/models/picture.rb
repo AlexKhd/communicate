@@ -1,9 +1,9 @@
 class Picture < ApplicationRecord
   after_initialize :set_default, if: :new_record?
-  belongs_to :user
+  belongs_to :folder
+  has_one :user, through: :folder
   default_scope -> { order(created_at: :desc) }
   mount_uploader :temp_file, ::ImageUploader
-  validates :user_id, presence: true
   validates :file_name, presence: true, length: { maximum: 100 }
   validates :content_type, presence: true, length: { maximum: 50 }
   validate :temp_file_size

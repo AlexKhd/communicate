@@ -5,14 +5,14 @@ module Api::PicturesHelper
     @root_id ||= get_root
   end
 
-  def upload_file(user, name, io, content_type)
+  def upload_file(user, name, io, content_type, parent_folder_gd_id)
     create_user_folder(user) if user.gd_fid.nil?
+    parent_folder_gd_id ||= user.gd_fid
     metadata = {
       name: name,
       title: name,
       convert: false,
-      parents: [user.gd_fid]
-
+      parents: [parent_folder_gd_id]
     }
     file = @drive.create_file(
             metadata,
@@ -27,7 +27,8 @@ module Api::PicturesHelper
   end
 
   def remove_file(user, file_id)
-    @drive.update_file(file_id, remove_parents: user.gd_fid, fields: '')
+    picture = Picture.find_by(gd_id: file_id)
+    @drive.update_file(file_id, remove_parents: picture.folder.gd_fid, fields: '')
   end
 
   def request_user(json = nil)
@@ -54,6 +55,19 @@ module Api::PicturesHelper
         file = @drive.create_file(metadata, fields: 'id')
         user.gd_fid = file.id
         user.save
+      end
+    end
+
+    def create_user_public_folder(user, foldername)
+      if !Folder.exists?(user_id: user.id, name: foldername)
+        metadata = {
+          name: foldername,
+          parents:[user.gd_fid],
+          mime_type: 'application/vnd.google-apps.folder'
+        }
+        file = @drive.create_file(metadata, fields: 'id')
+        folder = user.folders.build(name: foldername, gd_fid: file.id, gd_name: foldername)
+        folder.save
       end
     end
 

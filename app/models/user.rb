@@ -15,7 +15,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :messages
   has_many :chatrooms, through: :messages
-  has_many :pictures, dependent: :destroy
+  has_many :folders, dependent: :destroy
+  has_many :pictures, through: :folders, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
@@ -86,6 +87,6 @@ class User < ApplicationRecord
   end
 
   def feed
-    Picture.where("user_id = ?", id)
+    self.pictures
   end
 end

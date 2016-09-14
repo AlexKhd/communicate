@@ -1,8 +1,10 @@
-= form_for(@picture) do |f|
+= simple_form_for(@picture) do |f|
   = render 'shared/error_messages', object: f.object
-  span.temp_file
+  .form-inputs
     = f.file_field :temp_file, accept: 'image/jpg,image/jpeg,image/gif,image/png'
-    /, multiple: true
+    - if current_user.admin?
+      = text_field_tag :new_folder_name
+    = collection_select(:folder_id, nil, Folder.all, :id, :name, selected: 1)
   = f.submit 'Post', class: 'btn btn-primary'
 
 javascript:
