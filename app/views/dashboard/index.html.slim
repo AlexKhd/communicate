@@ -1,7 +1,8 @@
 .jumbotron
   h1.display-3 Welcome!
-  p.lead>This is a chat!
+  p.lead>Photos & chat!
   hr.m-y-2
-  p no registration required
   p.lead
-    = link_to 'To rooms', chatrooms_path, class: 'btn btn-primary btn-lg', role: "button"
+    = link_to 'To chatrooms', chatrooms_path, class: 'btn btn-primary btn-lg', role: "button"
+  p.lead
+    = link_to 'To gallery', pictures_path, class: 'btn btn-primary btn-lg', role: "button"

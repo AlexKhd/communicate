@@ -9,6 +9,8 @@ class PicturesController < ApplicationController
       connect
       @picture = current_user.pictures.build
       @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_all_items = Picture.all.paginate(page: params[:page])
+      create_user_folder(current_user) if current_user.gd_fid.nil?
       create_user_public_folder(current_user, 'MyPublicFolder') if !Folder.exists?(user_id: current_user.id, name: 'MyPublicFolder')
       @folders = current_user.folders
     end

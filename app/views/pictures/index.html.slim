@@ -2,9 +2,11 @@
   .row
     aside.col-md-4
       section.user_info
-        = render 'shared/user_info'
+        - if current_user.admin?
+          = render 'shared/user_info'
       section.picture_form
-        = render 'shared/picture_form'
+        - if current_user.admin?
+          = render 'shared/picture_form'
     .col-md-8
       h3 Picture Feed
       = render 'shared/feed'
