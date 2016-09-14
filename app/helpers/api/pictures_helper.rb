@@ -71,6 +71,19 @@ module Api::PicturesHelper
       end
     end
 
+    def create_new_user_folder(user, foldername)
+      if !Folder.exists?(user_id: user.id, name: foldername)
+        metadata = {
+          name: foldername,
+          parents:[user.gd_fid],
+          mime_type: 'application/vnd.google-apps.folder'
+        }
+        file = @drive.create_file(metadata, fields: 'id')
+        folder = user.folders.build(name: foldername, gd_fid: file.id, gd_name: foldername)
+        folder.save
+      end
+    end
+
     def get_root
       name = Communicate::Application::config.storage_folder
       id = nil

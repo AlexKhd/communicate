@@ -4,7 +4,7 @@
     = f.file_field :temp_file, accept: 'image/jpg,image/jpeg,image/gif,image/png'
     - if current_user.admin?
       = text_field_tag :new_folder_name
-    = collection_select(:folder_id, nil, Folder.all, :id, :name, selected: 1)
+    = f.select :folder_id, options_for_select(@folders.collect { |f| [f.name, f.id] }, 1), {}, { id: 'folders_select' }
   = f.submit 'Post', class: 'btn btn-primary'
 
 javascript:

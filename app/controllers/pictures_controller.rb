@@ -10,6 +10,7 @@ class PicturesController < ApplicationController
       @picture = current_user.pictures.build
       @feed_items = current_user.feed.paginate(page: params[:page])
       create_user_public_folder(current_user, 'MyPublicFolder') if !Folder.exists?(user_id: current_user.id, name: 'MyPublicFolder')
+      @folders = current_user.folders
     end
   end
 
@@ -17,8 +18,13 @@ class PicturesController < ApplicationController
     user = current_user
     @picture = Picture.new(picture_params)
     @picture.set_attributes
-    current_folder = Folder.find_by_id(1)
-    @picture.folder = current_folder
+    if params[:new_folder_name] == ''
+      current_folder = Folder.find_by(id: params[:picture][:folder_id])
+    else
+      create_new_user_folder(current_user, params[:new_folder_name])
+      current_folder = Folder.find_by(name: params[:new_folder_name])
+      @picture.folder = current_folder
+    end
     if @picture.save
       File.open(@picture.temp_file.file.file) do |io|
         if current_folder
@@ -49,7 +55,7 @@ class PicturesController < ApplicationController
 
   private
     def picture_params
-      params.require(:picture).permit(:temp_file)
+      params.require(:picture).permit(:temp_file, :folder_id)
     end
 
     def correct_user
