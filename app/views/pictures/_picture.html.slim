@@ -1,7 +1,7 @@
 li id="picture-#{picture.id}"
   span.file_name
     - if picture.file_name?
-      = link_to image_tag(api_picture_path(id: picture.url_key, size: :medium)),
+      = link_to image_tag(api_picture_path(id: picture.url_key, size: :large)),
         api_picture_path(id: picture.url_key), class: :popup_link, target: :_blank if picture.gd_id_thumb
   span.timestamp
     Posted #{time_ago_in_words(picture.created_at)} ago.

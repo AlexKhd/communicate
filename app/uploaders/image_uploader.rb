@@ -22,23 +22,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  process scale: [1280, 1280]
+  process scale: [1920, 1272]
 
   def scale(width, height)
     resize_to_fit(width, height)
   end
 
   version :thumb do
-    process resize_and_pad: [100, 80]
+    process resize_and_pad: [120, 80]
   end
 
   version :medium do
-    process resize_to_fill: [420, 420]
+    process resize_to_fill: [640, 420]
   end
 
   version :large do
-    process resize_to_fill: [800, 800]
+    process resize_to_fill: [1280, 860]
   end
 
   def extension_whitelist
