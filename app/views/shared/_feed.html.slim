@@ -1,10 +1,4 @@
-- if current_user.admin?
-  - if @feed_items.any?
-    ol.pictures
-      = render @feed_items
-    = will_paginate @feed_items
-- else
-  - if @feed_all_items.any?
-    ol.pictures
-      = render @feed_all_items
-    = will_paginate @feed_all_items
+- if @feed_all_items_from_public.any?
+  ol.pictures
+    = render @feed_all_items_from_public
+  = will_paginate @feed_all_items_from_public

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :pictures
   end
 
+  get "/posts/:id", to: "folders#show", as: 'post'
+
   devise_for :users, controllers: { registrations: :registrations, omniauth_callbacks: 'users/omniauth_callbacks' }
   mount ActionCable.server => '/cable'
   resources :chatrooms, only: [:index, :show, :new, :create]

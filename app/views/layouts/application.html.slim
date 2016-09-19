@@ -15,8 +15,7 @@ html
     = action_cable_meta_tag
     = render 'layouts/ga' if Rails.env.production?
   body
+    = render 'layouts/header'
+    = flash_messages
     #wrapper
-      = render 'layouts/header'
-      = flash_messages
-      .container
-        = yield
+      = yield

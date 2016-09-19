@@ -23,15 +23,23 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process scale: [200, 300]
-  #
-  # def scale(width, height)
-    # do something
-  # end
+  process scale: [1280, 1280]
 
-  # version :thumb do
-  #  process resize_to_fill: [150, 150]
-  # end
+  def scale(width, height)
+    resize_to_fit(width, height)
+  end
+
+  version :thumb do
+    process resize_and_pad: [100, 80]
+  end
+
+  version :medium do
+    process resize_to_fill: [420, 420]
+  end
+
+  version :large do
+    process resize_to_fill: [800, 800]
+  end
 
   def extension_whitelist
    %w(jpg jpeg gif png)

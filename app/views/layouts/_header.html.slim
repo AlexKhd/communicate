@@ -10,10 +10,6 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
       = link_to 'Home', root_path, class: 'nav-item nav-link'
       = link_to 'Chatrooms', chatrooms_path, class: 'nav-item nav-link'
       = link_to 'Gallery', pictures_path, class: 'nav-item nav-link'
-      - if current_user
-        = link_to 'Logout', destroy_user_session_path, class: 'nav-item nav-link', method: :delete
-      - else
-        = link_to 'Login', new_user_session_path, class: active_class(new_user_session_path)
       - if current_user && current_user.admin?
         .btn-group
           = link_to 'Admin', '', class: "dropdown-toggle nav-link nav-item", type: "button",
@@ -23,3 +19,9 @@ nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
             = link_to 'Log', admin_audits_path, class: 'dropdown-item'
             = link_to 'Users', admin_users_path, class: 'dropdown-item'
             = link_to 'Profile', profile_path, class: 'dropdown-item'
+      ul.nav.navbar-nav.pull-right
+        li.nav-item
+        - if current_user
+          = link_to 'Logout', destroy_user_session_path, class: 'nav-item nav-link', method: :delete
+        - else
+          = link_to 'Login', new_user_session_path, class: active_class(new_user_session_path)

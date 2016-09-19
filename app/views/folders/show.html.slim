@@ -1,0 +1,7 @@
+.row
+  .col-md-10.offset-md-1
+    h3 = @folder.name
+    - if @pictures.any?
+      ol.pictures
+        = render @pictures
+      = will_paginate @pictures

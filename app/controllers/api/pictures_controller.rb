@@ -30,10 +30,20 @@ class Api::PicturesController < ApplicationController
     if picture.nil?
       render :json => {error: "File not found."}
     else
+      case params[:size]
+        when 'thumb'
+          google_file_id = picture.gd_id_thumb
+        when 'medium'
+          google_file_id = picture.gd_id_medium
+        when 'large'
+          google_file_id = picture.gd_id_large
+        else
+          google_file_id = picture.gd_id
+      end
       sio = StringIO.new
-      download_file(picture.gd_id, sio)
+      download_file(google_file_id, sio)
       sio.rewind
-      send_data sio.read, :filename => picture.file_name, :type => picture.content_type
+      send_data sio.read, filename: picture.file_name, type: picture.content_type
     end
   end
 

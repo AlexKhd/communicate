@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913203058) do
+ActiveRecord::Schema.define(version: 20160919161126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160913203058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "slug"
+    t.index ["slug"], name: "index_folders_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_folders_on_user_id", using: :btree
   end
 
@@ -84,6 +86,9 @@ ActiveRecord::Schema.define(version: 20160913203058) do
     t.datetime "updated_at",     null: false
     t.json     "temp_file_json"
     t.integer  "folder_id"
+    t.string   "gd_id_thumb"
+    t.string   "gd_id_medium"
+    t.string   "gd_id_large"
     t.index ["folder_id"], name: "index_pictures_on_folder_id", using: :btree
   end
 

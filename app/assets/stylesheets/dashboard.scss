@@ -7,6 +7,11 @@ body { padding-top: 70px; }
   body { padding-top: 90px; }
 }
 
+#wrapper {
+  width: 95%;
+  margin: 0 auto;
+}
+
 // navbar
 
 .navbar-toggler {
@@ -137,11 +142,11 @@ body { padding-top: 70px; }
   }
   .file_name {
     display: block;
-    margin-left: 60px;
+    margin-left: 10px;
     img {
       display: block;
       padding: 5px 0;
-      width: 30rem;
+      width: 100%;
     }
   }
   .content_type {
@@ -165,4 +170,55 @@ body { padding-top: 70px; }
     display: block;
     margin-left: 60px;
   }
+}
+
+.form-inputs {
+  #picture_temp_file {
+    width: 100%;
+  }
+}
+
+
+label.myLabel input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+/***** Example custom styling *****/
+.myLabel {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+  width: 100%;
+  height: 32px;
+  input{
+    //opacity: 0;
+    filter: alpha(opacity=0);
+    //transform: translate(-300px, 0) scale(4);
+    direction: ltr;
+    cursor: pointer;
+  }
+  border: 2px solid #AAA;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin: 2px;
+  background: #DDD;
+  display: inline-block;
+}
+
+.myLabel:hover {
+    background: #CCC;
+}
+
+.myLabel:active {
+    background: #CCF;
+}
+
+.myLabel :invalid + span {
+    color: #A44;
+}
+
+.myLabel :valid + span {
+    color: #4A4;
 }

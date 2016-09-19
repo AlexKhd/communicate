@@ -1,11 +1,19 @@
 = simple_form_for(@picture) do |f|
   = render 'shared/error_messages', object: f.object
   .form-inputs
-    = f.file_field :temp_file, accept: 'image/jpg,image/jpeg,image/gif,image/png'
+    .myLabel
+      = f.file_field :temp_file, accept: 'image/jpg,image/jpeg,image/gif,image/png'
+    = f.label :folder_id, 'upload to:'
+    = f.select :folder_id, options_for_select(@folders.collect { |f| [f.name, f.id] }, last_posted_folder),
+      {}, { id: 'folders_select' }
     - if current_user.admin?
       = text_field_tag :new_folder_name
-    = f.select :folder_id, options_for_select(@folders.collect { |f| [f.name, f.id] }, 1), {}, { id: 'folders_select' }
+    = f.input :source_type, :label => "L or V", :collection => ["lead","vteam"], :selected => "lead"
   = f.submit 'Post', class: 'btn btn-primary'
+
+label.myLabel
+  input type="file"
+    span My label
 
 javascript:
   $('#picture_temp_file').bind('change', function() {

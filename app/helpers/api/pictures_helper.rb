@@ -29,6 +29,9 @@ module Api::PicturesHelper
   def remove_file(user, file_id)
     picture = Picture.find_by(gd_id: file_id)
     @drive.update_file(file_id, remove_parents: picture.folder.gd_fid, fields: '')
+    @drive.update_file(picture.gd_id_thumb, remove_parents: picture.folder.gd_fid, fields: '') if picture.gd_id_thumb
+    @drive.update_file(picture.gd_id_medium, remove_parents: picture.folder.gd_fid, fields: '') if picture.gd_id_medium
+    @drive.update_file(picture.gd_id_large, remove_parents: picture.folder.gd_fid, fields: '') if picture.gd_id_large
   end
 
   def request_user(json = nil)
@@ -38,6 +41,14 @@ module Api::PicturesHelper
     token = json["token"]
     user = User.find_by(api_token: token)
     user.nil?? nil : user
+  end
+
+  def last_posted_folder
+    if current_user.pictures.exists?
+      current_user ? current_user.pictures.order('id').first.folder_id : 1
+    else
+      1
+    end
   end
 
   private
@@ -54,7 +65,7 @@ module Api::PicturesHelper
         }
         file = @drive.create_file(metadata, fields: 'id')
         user.gd_fid = file.id
-        user.save
+        user.save!
       end
     end
 
