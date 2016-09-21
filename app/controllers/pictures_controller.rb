@@ -14,8 +14,8 @@ class PicturesController < ApplicationController
       #@feed_all_items = Picture.all.paginate(page: params[:page], per_page: 10)
       #@feed_all_items = Folder.where(name: :MyPublicFolder).pictures #.all.paginate(page: params[:page], per_page: 10)
 
-      create_user_folder(current_user) if current_user.gd_fid.nil?
-      create_user_public_folder(current_user, 'MyPublicFolder') if !Folder.exists?(user_id: current_user.id, name: 'MyPublicFolder')
+      # create_user_folder(current_user) if current_user.gd_fid.nil?
+      # create_user_public_folder(current_user, 'MyPublicFolder') if !Folder.exists?(user_id: current_user.id, name: 'MyPublicFolder')
     end
   end
 
@@ -24,10 +24,10 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @picture.set_attributes
     if params[:new_folder_name] == ''
-      current_folder = Folder.find_by(id: params[:picture][:folder_id])
+      current_folder = Folder.friendly.find_by(id: params[:picture][:folder_id])
     else
       create_new_user_folder(current_user, params[:new_folder_name])
-      current_folder = Folder.find_by(name: params[:new_folder_name])
+      current_folder = Folder.friendly.find_by(name: params[:new_folder_name])
       @picture.folder = current_folder
     end
     if @picture.save
