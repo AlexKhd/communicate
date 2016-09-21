@@ -59,7 +59,7 @@ class PicturesController < ApplicationController
       File.unlink @picture.temp_file.versions[:thumb].file.file
       File.unlink @picture.temp_file.versions[:medium].file.file
       File.unlink @picture.temp_file.versions[:large].file.file
-      flash[:success] = 'Picture added!'
+      flash[:success] = "Picture #{@picture.file_name} added!"
       redirect_to pictures_path
     else
       @feed_items = []

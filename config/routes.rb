@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :users
     resources :chatrooms, only: [:destroy]
     resources :audits, only: [:destroy, :index]
+    resources :folders, only: [:index]
   end
 
   namespace :api, defaults:{format: 'json'} do
