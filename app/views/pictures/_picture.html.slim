@@ -5,6 +5,6 @@ li id="picture-#{picture.id}"
         api_picture_path(id: picture.url_key), class: :popup_link, target: :_blank if picture.gd_id_thumb
   span.timestamp
   p
-    Posted #{time_ago_in_words(picture.created_at) + get_picture_size + 'ttt'} ago.
+    Posted #{time_ago_in_words(picture.created_at)} ago.
     -if current_user?(picture.user)
       = link_to 'delete', picture, method: :delete, data: { confirm: "You sure?" }

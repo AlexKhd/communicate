@@ -45,7 +45,7 @@ module Api::PicturesHelper
 
   def last_posted_folder
     if current_user.pictures.exists?
-      current_user ? current_user.pictures.order('id').first.folder_id : 1
+      current_user ? current_user.pictures.order('id').last.folder_id : 1
     else
       1
     end

@@ -4,7 +4,7 @@ class FoldersController < ApplicationController
   after_action :notify_admin, only: [:show]
 
   def show
-    @pictures = @folder.pictures.paginate(page: params[:page], per_page: 10)
+    @pictures = @folder.pictures.paginate(page: params[:page], per_page: 10).order(id: :asc)
   end
 
   def destroy
