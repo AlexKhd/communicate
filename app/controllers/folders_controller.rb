@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :redirect_users
   before_action :set_folder
-  after_action :notify_message, only: [:show]
+  after_action :notify_admin, only: [:show]
 
   def show
     @pictures = @folder.pictures.paginate(page: params[:page], per_page: 10)
@@ -12,9 +12,13 @@ class FoldersController < ApplicationController
   end
 
   private
-    def notify_message
-        user = current_user
-        AdminMailer.notify_message('user visited a folder', @folder.name + ' ' + user.name).deliver_now
+    def notify_admin
+      admin = User.find_by_email(Rails.application.secrets.admin_email)
+      admin.update_attribute(:news_email_sent_at, Time.now) if admin.news_email_sent_at.nil?
+      if admin.news_email_sent_at < 5.minutes.ago
+        AdminMailer.notify_message('user visited a folder', @folder.name + ' ' + current_user.name).deliver_now
+        admin.update_attribute(:news_email_sent_at, Time.now)
+      end
     end
 
     def picture_params

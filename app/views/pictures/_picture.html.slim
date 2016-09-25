@@ -1,9 +1,10 @@
 li id="picture-#{picture.id}"
   span.file_name
     - if picture.file_name?
-      = link_to image_tag(api_picture_path(id: picture.url_key, size: :large)),
+      = link_to image_tag(api_picture_path(id: picture.url_key, size: get_picture_size)),
         api_picture_path(id: picture.url_key), class: :popup_link, target: :_blank if picture.gd_id_thumb
   span.timestamp
-    Posted #{time_ago_in_words(picture.created_at)} ago.
+  p
+    Posted #{time_ago_in_words(picture.created_at) + get_picture_size + 'ttt'} ago.
     -if current_user?(picture.user)
       = link_to 'delete', picture, method: :delete, data: { confirm: "You sure?" }
